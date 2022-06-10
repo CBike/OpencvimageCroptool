@@ -3,7 +3,6 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 import cv2
-from datetime import datetime
 from function import *
 
 QApplication.setAttribute(Qt.AA_EnableHighDpiScaling, True)
