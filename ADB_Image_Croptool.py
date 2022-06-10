@@ -8,7 +8,6 @@ from function import *
 
 QApplication.setAttribute(Qt.AA_EnableHighDpiScaling, True)
 img_origin = ''
-
 class MyApp(QWidget):
     def __init__(self):
         super(MyApp, self).__init__()
@@ -74,9 +73,7 @@ class MyApp(QWidget):
 
         target = cv2.imread(img_origin)
         cropped_img = target[self.begin.y():self.destination.y(), self.begin.x():self.destination.x()]
-        QMessageBox.question(self, 'INFORMATION', 'Captured Image Cordinate [{}:{},{}:{}]'.
-                             format(self.begin.y(), self.destination.y(), self.begin.x(), self.destination.x()),
-                             QMessageBox.Yes)
+        self.showmessageBox()
 
         return cropped_img
 
@@ -86,6 +83,16 @@ class MyApp(QWidget):
         timestamp = now.strftime("%d_%H_%M_%S")
         cv2.imwrite('.\captured_image\cropped_img_{}.bmp'.format(timestamp), cropped_img)
 
+    def showmessageBox(self):
+
+        msgBox = QMessageBox()
+        msgBox.setWindowTitle("INFORMATION")
+        msgBox.setText("View Captured Cordinate in details")
+        msgBox.setDetailedText('Captured Image Cordinate [{}:{},{}:{}]'.
+                             format(self.begin.y(), self.destination.y(), self.begin.x(), self.destination.x()))
+        msgBox.setIcon(QMessageBox.Information)
+        msgBox.setStandardButtons(QMessageBox.Ok)
+        msgBox.exec_()
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

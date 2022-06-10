@@ -3,14 +3,13 @@ from datetime import datetime
 
 
 def Request_gvm_image(display_id):
-    now = datetime.now()
-    timestamp = now.strftime("%d_%H_%M_%S")
-    filepath =  '.\captured_image\\temp{}.png'.format(timestamp)
-    os.system('adb exec-out screencap -p -d {} > {}'
-              .format(display_id, filepath))
+    print("function_Request_gvm_image")
+    if display_id == 1:
+        filepath = 'C:\python_dev\imageCroptool(GVM)\\bike.png'
+    if display_id == 0:
+        filepath = 'C:\python_dev\imageCroptool(GVM)\\car.png'
 
     return filepath
-
 
 
 
