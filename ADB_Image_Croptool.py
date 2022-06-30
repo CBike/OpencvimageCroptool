@@ -14,7 +14,10 @@ class MyApp(QWidget):
         self.window_width, self.window_height = 1280, 720
         self.setMinimumSize(self.window_width, self.window_height)
 
+        info_layout = QVBoxLayout()
         layout = QVBoxLayout()
+
+        self.setLayout(info_layout)
         self.setLayout(layout)
 
         self.pix = QPixmap()
@@ -73,7 +76,7 @@ class MyApp(QWidget):
 
         target = cv2.imread(img_origin)
         cropped_img = target[self.begin.y():self.destination.y(), self.begin.x():self.destination.x()]
-        self.showmessageBox()
+        # self.showmessageBox()
 
         return cropped_img
 
@@ -100,6 +103,7 @@ if __name__ == '__main__':
         Qwidget {
             font-size: 30px;
         }''')
+
     myApp = MyApp()
     myApp.show()
 

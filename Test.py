@@ -14,14 +14,15 @@ class MyApp(QWidget):
         self.window_width, self.window_height = 1280, 720
         self.setMinimumSize(self.window_width, self.window_height)
 
-        layout = QVBoxLayout()
-        self.setLayout(layout)
-
+        self.view_layout = QVBoxLayout()
+        self.toolbar = QToolBar
         self.pix = QPixmap()
         self.pix.load(img_origin)
-
+        self.lb_pixmap = QLabel()
+        self.lb_pixmap.setPixmap(self.pix)
+        self.view_layout.addWidget(self.lb_pixmap)
         self.begin, self.destination = QPoint(), QPoint()
-
+        self.setLayout(self.view_layout)
 
 
 
@@ -61,11 +62,11 @@ class MyApp(QWidget):
             self.save_img(target)
 
     def keyPressEvent(self, e):
-        global img_origin
         if e.key() == Qt.Key_0:
             filepath = Request_gvm_image(0)
             print(filepath)
             self.pixmap_change(filepath)
+
         if e.key() == Qt.Key_1:
             filepath = Request_gvm_image(1)
             print(filepath)
@@ -75,7 +76,7 @@ class MyApp(QWidget):
 
         target = cv2.imread(img_origin)
         cropped_img = target[self.begin.y():self.destination.y(), self.begin.x():self.destination.x()]
-        self.showmessageBox()
+        # self.showmessageBox()
 
         return cropped_img
 
@@ -95,6 +96,7 @@ class MyApp(QWidget):
         msgBox.setIcon(QMessageBox.Information)
         msgBox.setStandardButtons(QMessageBox.Ok)
         msgBox.exec_()
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     app.setStyleSheet('''
