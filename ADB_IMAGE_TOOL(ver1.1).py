@@ -117,8 +117,6 @@ class MainWindow(QMainWindow):
                 cv2.imwrite(imgdir, cropped_img)
                 self.log.le_log.append("ATS_COMMON_1.GVM_IMAGE({},{}[{}:{},{}:{}])".format(GVM_DISPLAY, os.path.abspath(imgdir)
                                                                                   ,int(self.origin.y()),int(event.pos().y()), int(self.origin.x()),int(event.pos().x())))
-
-
             except Exception as e:
                 print(e)
 
